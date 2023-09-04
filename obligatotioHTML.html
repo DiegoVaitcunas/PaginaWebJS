@@ -1,0 +1,385 @@
+<html lang="es">
+<meta charset="UTF-8">
+<head><title>ejercicio 1</title></head>
+<script type="text/javascript" src="obligatorioJS.js"> </script>
+
+<body>
+<form>
+    <h1>Sistema para realizar reservas online:</h1><br>
+    <h2>Ingrese como empresa o como usuario para gestionar sus reservas.</h2><br>
+
+<fieldset>
+    <input type="button" id="btnOpcionRegistro" value="Registrarse">
+    <input type="button" id="btnOpcionInicio" value="Iniciar Sesion">
+</fieldset>
+
+<div id="opcion_1">
+    <fieldset>
+        <label for="nombreRegistro0">Ingresa tu nombre:</label>
+        <input type="text" id="nombreRegistro0"> <br><br>
+
+        <label for="nombreRegistro1">Ingresa un nombre de usuario (tiene que ser unico):</label>
+        <input type="text" id="nombreRegistro1"> <br><br>
+
+        <label for="nombreRegistro2">Corroborar el nombre de usuario:</label>
+        <input type="text" id="nombreRegistro2"> <br><br>
+
+        <label for="nombreContra1">Ingresa una contraseña (debe tener al menos un numero, una mayuscula y una minuscula):</label>
+        <input type="password" id="nombreContra1"> <br><br>
+
+        <label for="nombreContra2">Corroborar contraseña:</label>
+        <input type="password" id="nombreContra2"> <br><br>
+
+        <p id="parrafoOpcionRegistro"></p> <br>
+        <p id="parrafoNumeroUsuario"></p>
+        <input type="button" value="Registrar usuario" id="btnRegistrarUsuario"> <br>
+    </fieldset>
+</div>
+
+
+
+
+<div id="opcion_2">
+    <fieldset>
+        <label for="nombreInicio">Ingresar nombre de usuario:</label>
+        <input type="text" id="nombreInicio"> <br><br>
+
+        <label for="contraInicio">Ingresar contraseña:</label>
+        <input type="password" id="contraInicio"> <br><br>
+
+        <p id="parrafoOpcionInicio"></p> <br>
+        <input type="button" value="Ingresar como Local" id="btnIngresarLocal"> 
+        <input type="button" value="Ingresar como Usuario" id="btnIngresarUsuario"> <br>
+    </fieldset>
+</div>
+
+
+
+
+
+<div id="opcion_3">
+
+    <fieldset> <legend>herramientas para los locales:</legend>
+        <input type="button" id="btnOpcionListadoResevas" value="Listado de Reservas">
+        <input type="button" id="btnOpcionEstablecerActividadLocal" value="Establecer Actividad del Local">
+        <input type="button" id="btnOpcionEstadisticasLocal" value="Estadisticas del local">
+        <input type="button" id="btnOpcionReservas" value="Reservas">
+        <input type="button" id="btnCerrarSesionLocalesyUsuariosDiv3" value="Cerrar Sesion"><br>
+    </fieldset>
+
+</div>
+
+<div id="opcion_4">
+
+    <fieldset> <legend>herramientas para los usuarios:</legend>
+        <input type="button" id="btnOpcionRealizarReserva" value="Realizar una Reserva">
+        <input type="button" id="btnOpcionCancelarReserva" value="Cancelar una Reserva">
+        <input type="button" id="btnOpcionCalificarReserva" value="Calificar una Reserva">
+        <input type="button" id="btnOpcionInformacionEstadistica" value="Informacion Estadistica">
+        <input type="button" id="btnCerrarSesionLocalesyUsuariosDiv4" value="Cerrar Sesion"><br>
+    </fieldset>
+
+</div>
+
+
+
+
+
+
+
+<div id="opcion_5">
+    <fieldset>
+        <legend>Listado de Reservas</legend> 
+        <p><b>Este es el Listado Completo de las Reservas Realizadas</b></p><br>       
+        <table border="solid black">
+            <thead> 
+                <tr>
+                <th>Numero de Reserva (random)</th>
+                <th>Nombre del Cliente</th>
+                <th>Cupos de Reserva</th>
+                <th>Estado Actual de la Reserva</th>
+                <th>Cambiar Estado de la Reserva</th>
+                </tr>
+            </thead>
+            <tbody id="tablaListadoDeReservasDeLocales">
+
+            </tbody>
+        </table>      <br>
+
+        <p><b>Este es el Buscador de Reservas</b></p><br> 
+        <label for="buscadorNombreCliente">Ingresar Nombre del Cliente:</label>
+        <input type="text" id="buscadorNombreCliente">
+        <input type="button" id="btnBuscadorPorNombre" value="Buscar Reserva Pendiente">  <br><br>
+        <table border="solid black">
+            <thead>
+            <tr> 
+                <th>Numero de Reserva (random)</th>
+                <th>Nombre del Cliente</th>
+                <th>Cupos de Reserva</th>
+                <th>Estado Actual de la Reserva</th>
+                <th>Cambiar Estado de la Reserva</th>
+            </tr>
+            </thead>
+            <tbody id="tablaBuscadorDeReservasDeLocales">
+
+            </tbody>
+        </table>      <br>  
+
+        <p id="parrafoBuscadorReservasXNombre"></p>
+        <input type="button" value="Actualizar estados de las reservas" id="btnActualizarEStadosDeReserva">
+        <input type="button" value="Ir al menu anterior" id="btnAtrasListadoDeReservasDeLocales">
+        <input type="button" id="btnCerrarSesionLocalesyUsuariosDiv5" value="Cerrar Sesion"><br><br>
+    </fieldset>
+</div>
+
+
+
+
+<div id="opcion_6">
+    <fieldset>
+        <legend>Establecer actividad del local</legend>
+
+            <label for="selectEstablecerActividadDelLocal">Actividad:</label>
+                    <select id="selectEstablecerActividadDelLocal">
+                        <option value="1">Activo</option>
+                        <option value="2">Inactivo</option>
+                    </select>
+            <br><br>
+        <input type="button" value="Establecer actividad" id="btnEstablecerActividadDelLocal">
+        <input type="button" value="Ir al menu anterior" id="btnAtrasEstablecerActividadDelLocal">
+        <input type="button" id="btnCerrarSesionLocalesyUsuariosDiv6" value="Cerrar Sesion"><br><br>
+        <p id="parrafoEstablecerActividadDelLocal"></p>
+    </fieldset>
+</div>
+
+
+
+
+<div id="opcion_7">
+    <fieldset>
+        <legend>Estadisticas del local</legend>
+                <ul>
+                    <li>El Porcentaje de Ocupacion de tu local: <p id="parrafoPorcentajeDeOcupacion"> (Cupos ocupados / numero maximo de cupos)</p>
+                    </li><br>
+                    <li><p>Promedio de Calificaciones de su Local: </p>
+                        <table border="solid black">
+                            <thead>
+                                <th>Foto</th>
+                                <th>Cantidad de Calificadas</th>
+                                <th>Promedio de Calificaciones</th>
+                            </thead>
+                            <tbody id="tablaPorcentajeDeCalificacionDeLocalLogeado">
+
+                            </tbody>
+                        </table>
+                    </li><br>
+                    <li>
+                        <p>Promedio de Calificaciones de los demas Locales</p>
+                            <table border="solid black">
+                                <thead >
+                                    <th>Foto</th>
+                                    <th>Nombre Del Local</th>
+                                    <th>Cantidad de Reservas Calificadas</th>
+                                    <th>Promedio de Calificaciones</th>
+                                </thead>
+                                <tbody id="tablaPorcentajeDeCalificacionDeLosDemasLocales">
+
+                                </tbody>
+                            </table>
+                    </li> <br>
+                    <li>
+                    <p>Total de reservas del local: </p>
+                        <ul>
+                            <li> Reservas "pendientes":
+                                <table border="solid black">
+                                    <thead>
+                                        <th>Nombre del Cliente</th>
+                                        <th>Numero de Reserva</th>
+                                        <th>Cupos de la Reserva</th>
+                                    </thead>
+                                    <tbody id="tablaDeReservasPendientessDelLocal">
+        
+                                    </tbody>
+                                </table>
+                            </li>
+                            <li> <p> Reservas "finalizadas": </p> 
+                                <table border="solid black">
+                                    <thead>
+                                        <th>Nombre del Cliente</th>
+                                        <th>Numero de Reserva</th>
+                                        <th>Cupos de la Reserva</th>
+                                        <th>Calificacion de la Reserva</th>
+                                    </thead>
+                                    <tbody id="tablaDeReservasFinalizadasDelLocal">
+        
+                                    </tbody>
+                                </table> <br>
+                            </li>
+                            <li> Reservas totales: <p id="parrafoDeReservasTotalesDelLocal"> </p> </li>
+                        </ul>
+                    </li> <br> <br>
+                </ul>
+        <input type="button" value="Ir al menu anterior" id="btnAtrasEstadisticasDelLocal"> 
+        <input type="button" id="btnCerrarSesionLocalesyUsuariosDiv7" value="Cerrar Sesion"><br><br>
+    </fieldset>
+</div>
+
+
+<div id="opcion_8">
+    <fieldset>
+        <legend>Reservas</legend>
+                    El numero maximo de cupos actualmente es de: <p id="parrafoMaximoActual"></p> <br>
+                    <p id="parrafoMensajeDeMaximosLocal"></p>
+                    Ingresar nuevo maximo de reservas: <input type="number" id="parrafoNuevoMaximo"><br><br>             
+            <input type="button" value="Actualizar maximo" id="btnActualizarMaximoDeReservaDelLocal">
+            <input type="button" value="Ir al menu anterior" id="btnAtrasMaximoDeReservaDelLocal">
+            <input type="button" id="btnCerrarSesionLocalesyUsuariosDiv8" value="Cerrar Sesion"><br><br>
+    </fieldset>
+</div>
+
+
+<div id="opcion_9">
+    <fieldset>
+        <legend>Realizar una Reserva</legend>
+            <table border="solid black">
+                <thead>
+                    <th>Foto</th>
+                    <th>Nombre del local</th>
+                    <th>Numero de Cupos Disponibles</th>
+                    <th>Numero de cupos a reservar</th>
+                    <th>Hacer reserva</th>
+                </thead>
+                <tbody id="tablaRealizarReserva">
+            
+                </tbody>
+            </table> <br> <br>
+            <p id="parrafoMensadeDeReserva"></p>
+            <input type="button" id="btnReservar" value="Realizar reserva">
+            <input type="button" id="btnAtrasMenuReservas" value="Ir al menu anterior">
+            <input type="button" id="btnCerrarSesionLocalesyUsuariosDiv9" value="Cerrar Sesion"> <br><br>
+            <p id="parrafoRealizarReserva"></p><br>       
+    </fieldset>
+</div>
+
+
+
+
+<div id="opcion_10">
+    <fieldset>
+        <legend>Cancelar una Reserva</legend>
+            <table border="solid black">
+                <thead>
+                    <th>Numero de reserva(autogenerado)</th>
+                    <th>Foto</th>
+                    <th>Nombre del local</th>
+                    <th>Numero de cupos a cancelar</th>
+                    <th>Cancelar reserva: </th>
+                </thead>
+                <tbody id="tablaCancelarReserva">
+
+                </tbody>
+            </table> <br> <br>
+            <p id="parrafoCancelarReserva"> </p> <br> <br>
+            <input type="button" id="btnCancelarReserva" value="Cancelar reserva">
+            <input type="button" id="btnAtrasMenuCancelarReserva" value="Ir al menu anterior">
+            <input type="button" id="btnCerrarSesionLocalesyUsuariosDiv10" value="Cerrar Sesion"> <br><br>
+    </fieldset>
+</div>
+
+
+
+<div id="opcion_11">
+    <fieldset>
+        <legend>Calificar una Reserva</legend>
+            Listado de Reservas Finalizadas:
+            <table border="solid black">
+                <thead>
+                    <th>Numero de Reserva(autogenerado)</th>
+                    <th>Nombre del Local</th>
+                    <th>Foto</th>
+                    <th>Cupos de la reserva</th>
+                    <th>Calificar Reserva:</th>
+                </thead>
+                <tbody id="tablaReservasFinalizadas"> 
+                  
+                </tbody>
+            </table><br>
+            <p id="parrafoCalificacionDeReservas"></p> <br><br>
+            <input type="button" value="Ingrese su calificacion" id="btnCalificarReservas">
+            <input type="button" value="Ir al menu anterior" id="btnAtrasCalificarResera">
+            <input type="button" id="btnCerrarSesionLocalesyUsuariosDiv11" value="Cerrar Sesion"><br><br>
+    </fieldset> 
+</div>
+
+
+
+<div id="opcion_12">
+    <fieldset>
+        <legend>Informacion Estadistica</legend>
+        <ul>
+            <li>Reservas Pendientes:
+                <table border = "solid black"> 
+                    <thead>
+                    <tr>
+                        <th>Numero de Reserva</th>
+                        <th>Local</th>
+                        <th>Foto</th>
+                        <th>Cantidad de Cupos Reservados</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tablaDeReservasPendientesDelCliente">
+
+                    </tbody>
+                </table>
+
+            </li> <br> <br>
+            <li>Porcentaje de Reservas:
+                <table border = "solid black"> 
+                    <thead>
+                    <tr>
+                        <th>Locales con reservas completadas(nombres)</th>
+                        <th>Foto/s</th>
+                        <th>Cantidad Total de Reservas Realizadas</th>
+                        <th>Cantidad de Cupos Totales de las Reservas</th>
+                        <th>Cantidad Total de Reservas del Local</th>
+                        <th>Cupos Reservas totales del local</th>
+                        <th>Porcentaje de reservas del local</th>
+                        <th>Porcentaje de cupos del local</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tablaDePorcentajeDeReservas">
+
+                    </tbody>
+                </table>
+            </li> <br> <br>
+            <li>Local/es Favorito/s:
+                <table border = "solid black"> 
+                    <thead>
+                    <tr>
+                        <th>Nombre/s</th>
+                        <th>Foto/s</th>
+                        <th>Porcentaje de reservas del local</th>
+                        <th>Reservas totales del local</th>
+                        <th>Cantidad de Cupos Totales de las Reservas</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tablaDeLocalFavorito">
+
+                    </tbody>
+                </table>
+            </li><br><br>
+        </ul><br><br>
+
+        <input type="button" value="Ir al menu anterior" id="btnAtrasInfoEstadistica">
+        <input type="button" id="btnCerrarSesionLocalesyUsuariosDiv12" value="Cerrar Sesion"><br>
+    </fieldset>
+</div>
+
+
+
+
+</form>
+
+</body>
+
+</html>  

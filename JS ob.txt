@@ -1,0 +1,1465 @@
+window.addEventListener("load", setup);
+
+/////////////////////////////////////////////////////////// AQUI LAS FUNCIONES SETUP Y DE INGRESO //////////////////////////////////////////////////////////////
+
+function setup(){
+
+    ///// botones de INICIO SESION Y REGISTRO DE USUARIOS ///////
+    document.querySelector("#btnOpcionRegistro").addEventListener("click", OpcionRegistro);
+    document.querySelector("#btnOpcionInicio").addEventListener("click", OpcionInicio);
+    document.querySelector("#btnRegistrarUsuario").addEventListener("click", RegistrarUsuario);
+    
+    document.querySelector("#btnIngresarUsuario").addEventListener("click", () => IngresarUsuario(false));
+    document.querySelector("#btnIngresarLocal").addEventListener("click", () => IngresarUsuario(true));
+
+    //////////// BOTONES Y FUNCIONES DE USUARIO CLIENTE ////////
+
+    document.querySelector("#btnOpcionRealizarReserva").addEventListener("click", listadoDeReservas);
+    document.querySelector("#btnReservar").addEventListener("click", reservar);
+    
+    document.querySelector("#btnOpcionCancelarReserva").addEventListener("click", cancelarReservas);
+    document.querySelector("#btnCancelarReserva").addEventListener("click", cancelar);
+
+    document.querySelector("#btnOpcionCalificarReserva").addEventListener("click", calificarReservas);
+    document.querySelector("#btnCalificarReservas").addEventListener("click", calificarReservaSiendoUsuario);
+
+    document.querySelector("#btnOpcionInformacionEstadistica").addEventListener("click", infoEstatistica);
+
+    ///// botones ATRAS MENU CLIENTE ////////
+    document.querySelector("#btnAtrasMenuReservas").addEventListener("click", atrasMenuReservas);
+    document.querySelector("#btnAtrasMenuCancelarReserva").addEventListener("click", atrasCancelarReserva);
+    document.querySelector("#btnAtrasCalificarResera").addEventListener("click", atrasCalificarReserva);
+    document.querySelector("#btnAtrasInfoEstadistica").addEventListener("click", atrasInfoEstadistica);
+
+    ///////// BOTONES Y FUNCIONES DE USUARIO LOCAL ////////
+    document.querySelector("#btnOpcionListadoResevas").addEventListener("click", listadoDeReservasParaLosLocales);
+    document.querySelector("#btnActualizarEStadosDeReserva").addEventListener("click", actualizarEstadosDeReservas);
+    document.querySelector("#btnBuscadorPorNombre").addEventListener("click", buscarReservaPorNombre);
+    
+    document.querySelector("#btnOpcionEstablecerActividadLocal").addEventListener("click", establecerActividadLocal);
+    document.querySelector("#btnEstablecerActividadDelLocal").addEventListener("click", estadoDelLocal);
+    
+    document.querySelector("#btnOpcionEstadisticasLocal").addEventListener("click", mostrarEstadisticasDelLocal);
+    
+    document.querySelector("#btnOpcionReservas").addEventListener("click", mostrarMenuCupoMaximo);
+    document.querySelector("#btnActualizarMaximoDeReservaDelLocal").addEventListener("click", cambiarMaximoDeCuposDelLocal);
+
+    ////////////// botones volver atras local /////////////////
+    document.querySelector("#btnAtrasListadoDeReservasDeLocales").addEventListener("click", btnAtrasListadoDeReservasDeLocales);
+    document.querySelector("#btnAtrasEstablecerActividadDelLocal").addEventListener("click", btnAtrasEstablecerActividadDelLocal);
+    document.querySelector("#btnAtrasEstadisticasDelLocal").addEventListener("click", btnAtrasEstadisticasDelLocal);
+    document.querySelector("#btnAtrasMaximoDeReservaDelLocal").addEventListener("click", btnAtrasMaximoDeReservaDelLocal);
+
+    //////////////////////14/06 BOTONES PARA CERRAR SESION, FALTAR COPIAR, NO OLVIDAR HTML, DIV 3 AL 12////////////////////////////
+    document.querySelector("#btnCerrarSesionLocalesyUsuariosDiv3").addEventListener("click", btnCerrarSesionLocalesyUsuariosDiv);
+    document.querySelector("#btnCerrarSesionLocalesyUsuariosDiv4").addEventListener("click", btnCerrarSesionLocalesyUsuariosDiv);
+    document.querySelector("#btnCerrarSesionLocalesyUsuariosDiv5").addEventListener("click", btnCerrarSesionLocalesyUsuariosDiv);
+    document.querySelector("#btnCerrarSesionLocalesyUsuariosDiv6").addEventListener("click", btnCerrarSesionLocalesyUsuariosDiv);
+    document.querySelector("#btnCerrarSesionLocalesyUsuariosDiv7").addEventListener("click", btnCerrarSesionLocalesyUsuariosDiv);
+    document.querySelector("#btnCerrarSesionLocalesyUsuariosDiv8").addEventListener("click", btnCerrarSesionLocalesyUsuariosDiv);
+    document.querySelector("#btnCerrarSesionLocalesyUsuariosDiv9").addEventListener("click", btnCerrarSesionLocalesyUsuariosDiv);
+    document.querySelector("#btnCerrarSesionLocalesyUsuariosDiv10").addEventListener("click", btnCerrarSesionLocalesyUsuariosDiv);
+    document.querySelector("#btnCerrarSesionLocalesyUsuariosDiv11").addEventListener("click", btnCerrarSesionLocalesyUsuariosDiv);
+    document.querySelector("#btnCerrarSesionLocalesyUsuariosDiv12").addEventListener("click", btnCerrarSesionLocalesyUsuariosDiv);
+        
+    loadDivs();
+    esconder();
+}
+// FUNCION LOAD DIVS //
+function loadDivs(){
+    divs.push(document.querySelector("#opcion_1"));
+    divs.push(document.querySelector("#opcion_2"));
+}
+// FUNCIONES DE OPCION: DIV REGISTRO, DIV INICIAR SESION 
+function OpcionRegistro(){
+    mostrar(1);
+}
+function OpcionInicio(){
+    mostrar(2);
+}
+function IngresarLocal(){
+    mostrar(3);
+}
+
+// FUNCIONES DE HERRAMIENTAS CLIENTE //
+function listadoDeReservas(){
+    mostrar(9);
+    mostrarLocales();
+}
+function cancelarReservas(){
+    mostrar(10);
+    mostrarReservasPendientes();
+}
+function calificarReservas(){
+    mostrar(11);
+    mostrarReservasFinalizadas();
+}
+function infoEstatistica(){
+    mostrar(12);
+    mostrarReservasPendientesDelCliente();
+    mostrarDatosEstaditsticosDelCliente();
+    mostrarTablaLocalesFavoritos();
+}
+///// funciones atras menu cliente //
+function atrasMenuReservas(){
+    mostrar(4);
+}
+function atrasCancelarReserva(){
+     mostrar(4);
+}
+function atrasCalificarReserva(){
+    mostrar(4);
+}
+function atrasInfoEstadistica(){
+    mostrar(4);
+}
+
+////////////////////// FUNCIONES DE HERRAMIENTAS LOCALES //
+ function listadoDeReservasParaLosLocales(){
+    mostrar(5);
+    mostrarListadoDeReservasParaLosLocales();
+}
+function establecerActividadLocal(){
+    mostrar(6);
+}
+function mostrarMenuCupoMaximo(){
+    mostrar(8);
+    mostrarMaximoDeCuposDelLocal();
+}
+function mostrarEstadisticasDelLocal(){
+    mostrar(7);
+    porcentajeDeOcupacionDelLocal();
+    hacerPromedioDeCalificacionDelLosLocales();
+    hacerTotalesDeReservasDelLocal();
+    mostrarTotalDeReservasDelLocal();
+}
+/////////////////////FUNCION ATRAS LOCALES///////////////////////////
+function btnAtrasListadoDeReservasDeLocales (){
+    mostrar(3);
+}
+function btnAtrasEstablecerActividadDelLocal (){
+    mostrar(3);
+}
+function btnAtrasEstadisticasDelLocal (){
+    mostrar(3);
+}
+function btnAtrasMaximoDeReservaDelLocal (){
+    mostrar(3);
+}
+/////////////////////FUNCION ATRAS LOCALES///////////////////////////
+function btnAtrasListadoDeReservasDeLocales (){
+    mostrar(3);
+}
+function btnAtrasEstablecerActividadDelLocal (){
+    mostrar(3);
+}
+function btnAtrasEstadisticasDelLocal (){
+    mostrar(3);
+}
+function btnAtrasMaximoDeReservaDelLocal (){
+    mostrar(3);
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function btnCerrarSesionLocalesyUsuariosDiv(){
+    mostrar(2);
+    usuarioLogeado = "";
+    borrarTodosLosCamposDeTexto();
+    document.querySelector("#parrafoOpcionRegistro").innerHTML ="";
+    desactivarBotones();
+}
+
+////////////////////////////////////////////////////////////////////////// aqui hacemos las clases /////////////////////////////////////////////////////////////////////
+
+class Cliente {
+  constructor(nombreUsuarioCliente, numeroIdentificadorClientes, contrasena) {
+    this.nombreUsuarioCliente = nombreUsuarioCliente
+    this.identificadorCliente = numeroIdentificadorClientes
+    this.contrasena = contrasena;
+    this.reservasDelUsuario = [];
+    
+  }
+}
+
+class Local {
+  constructor(nombre, tipoLocal, nombreUsuarioLocal, contrasenas, foto, estadoDelLocal, maximoDeReservas, reservasDisponibles, totalDeCuposReservados, totalDeReservas) {
+    this.nombre = nombre;
+    this.tipoDeLocal = tipoLocal;
+    this.nombreUsuarioLocal = nombreUsuarioLocal;
+    this.contrasena = contrasenas;
+    this.foto = foto;
+    this.estadoDelLocal = estadoDelLocal;
+    this.maximoDeReservas = Number(maximoDeReservas);
+    this.cuposDisponibles = Number(reservasDisponibles);
+    this.codigoReservas = [];
+    this.totalDeCuposReservadosDelLocal = Number(totalDeCuposReservados);
+    this.totalDeReservasRealizadasDelLocal = Number(totalDeReservas);
+    this.sumaDeCalificacionesDelLocal = 0;
+    this.sumaDeReservasPendientes = 0;
+  }
+}
+
+class Reserva {
+  constructor(local, nombreUsuarioCliente, numeroDeReserva, estadoPendiente, cuposDeReserva, calificacion){
+    this.local = local;
+    this.nombreUsuario = nombreUsuarioCliente;
+    this.numeroDeReserva = numeroDeReserva;
+    this.estadoPendiente = estadoPendiente;
+    this.cuposDeReserva = Number(cuposDeReserva);
+    this.calificacionDeLaReserva = Number(calificacion);
+  }
+  devolverCupos(nombreLocal, numeroDeCuposReservados, estadoDeDevolucion){
+    let encontroLocal = false;
+    for (let i = 0; i < reservas.length && !encontroLocal; i++) {
+        let elementReservaConCupos = reservas[i];
+        if (elementReservaConCupos.local == nombreLocal){
+            encontroLocal = true;
+            if(encontroLocal == true){
+                
+                for (let j = 0; j < locales.length; j++) {
+                    let elementLocalConReserva = locales[j];
+                    
+                    if(elementLocalConReserva.nombreUsuarioLocal == nombreLocal){
+                        elementLocalConReserva.cuposDisponibles = Number(elementLocalConReserva.cuposDisponibles) + Number(numeroDeCuposReservados);
+                        
+                        if(estadoDeDevolucion =="cancelada"){
+                            elementLocalConReserva.totalDeCuposReservadosDelLocal = Number(elementLocalConReserva.totalDeCuposReservadosDelLocal) - Number(numeroDeCuposReservados);
+                        }
+
+                    }
+                } 
+            }
+        } 
+    }console.log("devolver cupos" + locales);
+    }
+}
+
+////////////////////////////////////////////////////////////////// AQUI VAMOS A ARMAR LOS ARRAYS //////////////////////////////////////////////////////////////////////////
+
+let divs = [1,2,3,4,5,6,7,8,9,10,11,12];
+
+let identificadorCliente = 1;
+
+let usuarios = [];
+let reservas = []; 
+let locales = [];
+
+let usuarioLogeado = '';
+
+let numeroReserva = 1;
+
+////////////////////////////////////////////////////////////////// AQUI EN REGISTRO DEL USUARIO //////////////////////////////////////////////////////////////////////////
+
+function RegistrarUsuario(){
+    let nombre1 = document.querySelector("#nombreRegistro1").value;
+    let nombre2 = document.querySelector("#nombreRegistro2").value;
+    let contra1 = document.querySelector("#nombreContra1").value;
+    let contra2 = document.querySelector("#nombreContra2").value;
+    let todoOk = true;
+
+    if(nombre1 == nombre2 && contra1 == contra2) {
+
+        if(existe(nombre1) == true){
+            document.querySelector("#parrafoOpcionRegistro").innerHTML = "El nombre de usuario ya existe, intente con otro";
+            todoOk = false;
+        }
+        if(existe(nombre1) == false){
+            document.querySelector("#parrafoOpcionRegistro").innerHTML = "El nombre de usuario es unico";
+        }
+        if (esNumero(contra1) == false){
+            document.querySelector("#parrafoOpcionRegistro").innerHTML += ", la contrasena tiene que tener al menos un numero, intenta de nuevo";
+            todoOk = false;
+        }
+        if (esNumero(contra1) == true){
+            document.querySelector("#parrafoOpcionRegistro").innerHTML += ", la contrasena tiene, al menos un numero";
+        }
+        if (minyMayusculas(contra1) == true) {
+            document.querySelector("#parrafoOpcionRegistro").innerHTML += ", la contrasena tiene, al menos una mayuscula y una minuscula";
+        }
+        if (minyMayusculas(contra1) == false) {
+            document.querySelector("#parrafoOpcionRegistro").innerHTML += ", la contrasena no tiene una mayuscula o una minuscula, intenta de nuevo";
+            todoOk = false;
+        }
+
+        if (contraseñaMayorSeisCaracteres(contra1) == false) {
+            document.querySelector("#parrafoOpcionRegistro").innerHTML += ", la contraseña tiene que tener mas de seis caracteres.";
+            todoOk = false;
+        } 
+    }
+    if(nombre1 != nombre2){
+        document.querySelector("#parrafoOpcionRegistro").innerHTML = "Los usuarios no coinciden.";
+        todoOk = false;
+    }
+    if(contra1 != contra2){
+        document.querySelector("#parrafoOpcionRegistro").innerHTML += "Las contrasenas no coinciden.";
+        todoOk = false;
+    }
+    if(todoOk == true){
+        document.querySelector("#parrafoOpcionRegistro").innerHTML ="Se a registrado con exito";
+        
+        let nuevoUsuario = new Cliente(nombre1, identificadorCliente, contra1, 0);
+        usuarios.push(nuevoUsuario);
+        borrarTodosLosCamposDeTexto();
+        identificadorCliente += 1
+        
+    }
+}
+function existe(nombre){
+    let existe = false;
+    for(let i=0; i<usuarios.length; i++){
+        let elementoUsuario = (usuarios[i]);
+        if(nombre == elementoUsuario.nombreUsuarioCliente){
+            existe = true;
+        }
+    }
+    return existe;
+}
+function esNumero(contra){
+    let numero = false;
+    for(let i=0; i<contra.length; i++){
+        let caracter = contra.charAt(i);
+        if(isNaN(caracter) == true){
+            numero = false;
+        }
+        else {
+            numero = true;
+        }
+    }
+    return numero;
+}
+function minyMayusculas(contra){
+    let minu = false;
+    let mayu = false;
+    let minusculas = contra.toLocaleLowerCase();
+    let mayusculas = contra.toLocaleUpperCase();
+
+    for(let i=0; i<contra.length; i++){
+        let caracter =contra.charAt(i);
+        if (isNaN(caracter) == true){
+            if(caracter != minusculas.charAt(i)){
+                mayu = true;
+            }
+            if(caracter != mayusculas.charAt(i)){
+                minu = true;
+            }
+        }
+    }
+    if(minu == true && mayu == true){
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+//
+function contraseñaMayorSeisCaracteres(contra){
+    let numero= false;
+    for (let i=0; i<=contra.length;i++){
+        if(contra.length>=6){
+            numero=true;
+        }
+        else {
+            numero = false;
+        }
+        return numero;
+    }
+}
+////////////////////// 
+
+function convertirMinusculas(cualquierTexto){
+    let textoMinusculas=cualquierTexto.toLowerCase();
+      return textoMinusculas;
+}
+
+/////////////////////////////////////////////////////////////////// AQUI EL INGRESO DE USUARIOS //////////////////////////////////////////////////////////////////////////
+
+function IngresarUsuario(esLocal){
+    let usuarioIngresado1 = document.querySelector("#nombreInicio").value; 
+    let contraIngresada = document.querySelector("#contraInicio").value;
+    let esUsuario = false;
+    let posicionUsuario = 0;
+    let usuarioIngresado = convertirMinusculas(usuarioIngresado1); 
+
+    if(esLocal){
+        for (let i=0; i<locales.length; i++) {
+            let nombreLocalEnMinusculas = convertirMinusculas(locales[i].nombreUsuarioLocal);
+            if(usuarioIngresado == nombreLocalEnMinusculas){
+                esUsuario = true;
+                posicionUsuario = i;
+            }
+        }
+        if(esUsuario == false){
+            document.querySelector("#parrafoOpcionInicio").innerHTML = "no existe ese usuario.";
+        }
+        if(esUsuario == true){
+            
+          if(contraIngresada == locales[posicionUsuario].contrasena){
+                document.querySelector("#parrafoOpcionInicio").innerHTML = "ingreso con exito.";
+                usuarioLogeado = locales[posicionUsuario].nombreUsuarioLocal;
+                console.log(locales);
+                desactivarBotones();
+            }
+            else {
+                esUsuario = false;
+                document.querySelector("#parrafoOpcionInicio").innerHTML = "contrasena incorrecta.";
+            }
+        }
+    }
+  else {
+        for (let i=0; i<usuarios.length; i++) {
+            let nombreClienteMinuscula = convertirMinusculas(usuarios[i].nombreUsuarioCliente);
+            if(usuarioIngresado == nombreClienteMinuscula){
+                esUsuario = true;
+                posicionUsuario = i;
+            }
+        }
+        if(esUsuario == false){
+            document.querySelector("#parrafoOpcionInicio").innerHTML = "no existe ese usuario.";
+        }
+        if(esUsuario == true){
+            
+          if(contraIngresada == usuarios[posicionUsuario].contrasena){
+                document.querySelector("#parrafoOpcionInicio").innerHTML = "ingreso con exito.";
+                usuarioLogeado = usuarios[posicionUsuario].nombreUsuarioCliente;
+                console.log(usuarios);
+                desactivarBotones();
+            }
+            
+          else {
+                esUsuario = false;
+                document.querySelector("#parrafoOpcionInicio").innerHTML = "contrasena incorrecta.";
+            }
+        }
+    }
+
+    if(esUsuario == true){
+        esconder();
+        
+        if(esLocal){
+            mostrar(3);
+        }else{
+            mostrar(4);            
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////// AQUI LAS FUNCIONES ESCONDER Y MOSTRAR ///////////////////////////////////////////////////////////////////////
+
+function esconder(){
+    for (let i=1; i<= 12; i++){
+        let currentDiv = "opcion_"+i;
+        document.querySelector("#"+currentDiv).style.display = "none";
+    }
+}
+function mostrar(div){
+    let currentDiv = "#opcion_"+div;
+    for(let i=1; i <= 12; i++){
+        document.querySelector("#opcion_"+i).style.display = "none";
+    }
+    console.log(currentDiv);
+    document.querySelector(currentDiv).style.display = "block";
+}
+
+function borrarTodosLosCamposDeTexto(){
+    document.querySelector("#nombreInicio").value = "";
+    document.querySelector("#contraInicio").value = "";
+    document.querySelector("#nombreRegistro0").value = "";
+    document.querySelector("#nombreRegistro1").value = "";
+    document.querySelector("#nombreRegistro2").value = "";
+    document.querySelector("#nombreContra1").value = "";
+    document.querySelector("#nombreContra2").value = "";
+    document.querySelector("#parrafoOpcionInicio").innerHTML = "";
+    document.querySelector("#nombreRegistro0").value = "";
+    document.querySelector("#nombreRegistro1").value = "";
+    document.querySelector("#nombreRegistro2").value = "";
+    document.querySelector("#nombreContra1").value = "";
+    document.querySelector("#nombreContra2").value = "";
+
+}
+
+///////////////////////////////////////////////////////////////// AQUI CREAMOS LOS OBJETOS LOCALES ///////////////////////////////////////////////////////////////////////////
+
+let burgerTime = new Local("Burger Time", "restaurant", "Timeless", "Timeless1", "./burgerTime.jpg", true, 100, 100, 0, 0);
+locales.push(burgerTime);
+
+let telizzia = new Local("Telizzia", "restaurant", "telizzia", "amoLosGatitos1", "./telizzia.jpg", true, 25, 25, 0, 0);
+locales.push(telizzia);
+
+let baipa = new Local("Baipa", "restaurant", "baipa", "Bizcochos1", "./baipa.jpg", true, 250, 250, 0, 0);
+locales.push(baipa);
+
+let museoArtesVisuales = new Local("Museo de Artes Visuales", "museo", "artesVisuales", "visuales1", "./artesVisuales.jpg", true, 75, 75, 0, 0);
+locales.push(museoArtesVisuales);
+
+let museoDelCandombe = new Local("Museo Del Candombe", "museo", "candombe", "candombe1", "./candombe.jpg", true, 50, 50, 0, 0);
+locales.push(museoDelCandombe);
+
+let teatroSolis = new Local("Teatro Solis", "teatro", "solis", "Solis1", "./solis.jpg", true, 500, 500, 0, 0);
+locales.push(teatroSolis);
+
+let teatroComedia = new Local("Teatro Comedia", "teatro", "comedia", "Comedia1", "./comedia.jpg", true, 350, 350, 0, 0);
+locales.push(teatroComedia);
+
+////////////////////////////////////ACA VAN A IR LOS USUARIOS CLIENTES PRE-CARGADOS LOCALES, DEBEN SER 7///////////////////////////////////////////
+////////////////USUARIOS PERSONAS A CARGAR, 3 CON RESERVAS PENDIENTES, 2 CON FINALIZADAS Y PENDIENTES Y 2 QUE VAN A ESTAR SIN RESERVA////////////////
+
+function precargarDatosDeLasReservas(usuario, local, cantidadCupos, estado){
+    
+    for (let i = 0; i < locales.length; i++) {
+        let elementoLocal = locales[i];
+        
+        for (let z = 0; z < usuarios.length; z++) {
+            let elementoUsuarios = usuarios[z];
+        
+            if(elementoLocal.nombreUsuarioLocal == local && elementoUsuarios.nombreUsuarioCliente == usuario){
+                
+                switch(estado){
+                    case true:
+                        elementoLocal.totalDeCuposReservadosDelLocal += cantidadCupos;                   
+                        elementoLocal.cuposDisponibles = elementoLocal.cuposDisponibles - cantidadCupos;       
+                        elementoUsuarios.reservasDelUsuario.push(numeroReserva);
+                        elementoLocal.codigoReservas.push(numeroReserva);                 
+                        elementoLocal.totalDeReservasRealizadasDelLocal += 1;
+                        elementoLocal.sumaDeReservasPendientes += 1;
+                        numeroReserva += 1;
+                        break;
+                    case false:
+                        elementoLocal.totalDeCuposReservadosDelLocal += cantidadCupos;         
+                        elementoUsuarios.reservasDelUsuario.push(numeroReserva);
+                        elementoLocal.codigoReservas.push(numeroReserva);                 
+                        elementoLocal.totalDeReservasRealizadasDelLocal += 1;
+                        numeroReserva += 1;
+                        break;
+                    case "cancelada":       
+                        elementoUsuarios.reservasDelUsuario.push(numeroReserva);
+                        elementoLocal.codigoReservas.push(numeroReserva);
+                        numeroReserva += 1;
+                        break;
+                }
+            }
+        }
+    }                        
+}
+//-------
+let nombreDelUsuarioPreCargadoEnLaPosicion1 = new Cliente ("Juan Alberto", identificadorCliente, "JuanAL12345");
+usuarios.push(nombreDelUsuarioPreCargadoEnLaPosicion1);
+identificadorCliente+=1;
+
+let reservaPrecargada1 = new Reserva("Timeless", "Juan Alberto", numeroReserva, true, 10, 0);
+reservas.push(reservaPrecargada1);
+precargarDatosDeLasReservas("Juan Alberto", "Timeless", 10, true);
+//-------
+let nombreDelUsuarioPreCargadoEnLaPosicion2 = new Cliente ("Diego Alvez", identificadorCliente, "DDD1loCOlo");
+usuarios.push(nombreDelUsuarioPreCargadoEnLaPosicion2);
+identificadorCliente+=1;
+
+let reservaPrecargada2 = new Reserva("baipa", "Diego Alvez", numeroReserva, true, 30, 0);
+reservas.push(reservaPrecargada2);
+precargarDatosDeLasReservas("Diego Alvez", "baipa", 30, true);
+//-------
+let nombreDelUsuarioPreCargadoEnLaPosicion3 = new Cliente ("Almodovar", identificadorCliente, "Almodovar12345");
+usuarios.push(nombreDelUsuarioPreCargadoEnLaPosicion3);
+identificadorCliente+=1;
+
+let reservaPrecargada3 = new Reserva("solis", "Almodovar", numeroReserva, true, 20, 0);
+reservas.push(reservaPrecargada3);
+precargarDatosDeLasReservas("Almodovar", "solis", 20, true);
+//-------
+let nombreDelUsuarioPreCargadoEnLaPosicion4 = new Cliente ("Gustavo Lopez", identificadorCliente, "Lopezliii1234");
+usuarios.push(nombreDelUsuarioPreCargadoEnLaPosicion4);
+identificadorCliente+=1;
+
+let reservaPrecargada4 = new Reserva("telizzia", "Gustavo Lopez", numeroReserva, true, 2, 0);
+reservas.push(reservaPrecargada4);
+precargarDatosDeLasReservas("Gustavo Lopez", "telizzia", 2, true);
+
+let reservaPrecargada5 = new Reserva("artesVisuales", "Gustavo Lopez", numeroReserva, false, 20, 3);
+reservas.push(reservaPrecargada5);
+precargarDatosDeLasReservas("Gustavo Lopez", "artesVisuales", 20, false);
+
+//-------
+let nombreDelUsuarioPreCargadoEnLaPosicion5 = new Cliente ("Joaquin Sabina", identificadorCliente, "Sabina56654");
+usuarios.push(nombreDelUsuarioPreCargadoEnLaPosicion5);
+identificadorCliente+=1;
+
+let reservaPrecargada6 = new Reserva("comedia", "Joaquin Sabina", numeroReserva, true, 15, 0);
+reservas.push(reservaPrecargada6);
+precargarDatosDeLasReservas("Joaquin Sabina", "comedia", 15, true);
+
+let reservaPrecargada7 = new Reserva("candombe", "Joaquin Sabina", numeroReserva, false, 20, 4);
+reservas.push(reservaPrecargada7);
+precargarDatosDeLasReservas("Joaquin Sabina", "candombe", 20, false);
+
+let reservaPrecargada8 = new Reserva("telizzia", "Joaquin Sabina", numeroReserva, "cancelada", 4, 0);
+reservas.push(reservaPrecargada8);
+precargarDatosDeLasReservas("Joaquin Sabina", "telizzia", 4, "cancelada");
+
+//-------
+let nombreDelUsuarioPreCargadoEnLaPosicion6 = new Cliente ("Juan Nieto", identificadorCliente, "Nietomir55555");
+usuarios.push(nombreDelUsuarioPreCargadoEnLaPosicion6);
+identificadorCliente+=1;
+
+//-------
+let nombreDelUsuarioPreCargadoEnLaPosicion7 = new Cliente ("AlbertoBarros", identificadorCliente, "AlbertoBarrosjojo");
+usuarios.push(nombreDelUsuarioPreCargadoEnLaPosicion7);
+identificadorCliente+=1;
+
+////////////////////////////////////////////////////// funcion mostrar locales para reservar ////////////////////////////////////////////////////////////////////
+
+function mostrarLocales(){
+    document.querySelector("#parrafoRealizarReserva").innerHTML = "";
+    document.querySelector("#tablaRealizarReserva").innerHTML = "";
+        for (let i = 0; i < locales.length; i++) {
+            let elementoLocal= locales[i];
+            if(elementoLocal.estadoDelLocal === true && elementoLocal.cuposDisponibles > 0){
+                document.querySelector("#tablaRealizarReserva").innerHTML += `
+                                                                            <tr>
+                                                                            <td> <img src="${elementoLocal.foto}" width="50px" height="50px"></td>
+                                                                            <td>${elementoLocal.nombre}</td>
+                                                                            <td id="idCuposDisponilbesDeLaTabla${elementoLocal.nombreUsuarioLocal}">${elementoLocal.cuposDisponibles}</td>
+                                                                            <td> <input type="number" id="cantidadCuposAReservar${elementoLocal.nombreUsuarioLocal}"> </td> 
+                                                                            <td> 
+                                                                                <select id="selectReservar${elementoLocal.nombreUsuarioLocal}">
+                                                                                    <option value="1">No</option>
+                                                                                    <option value="2">Si</option>
+                                                                                <select> 
+                                                                            </td> 
+                                                                            </tr>
+                                                                        `;
+            }
+        }
+}
+/////////////////////////////////////////////////////// AQUI LAS FUNCIONES DE HACER RESERVAS ///////////////////////////////////////////////////////
+function verificarSiTieneUnaPendiente(elementoLocalAReservar){
+    let tiene = false;
+    for (let i = 0; i < reservas.length; i++) {
+        let elementoReserva = reservas[i];
+        if(elementoReserva.local == elementoLocalAReservar && elementoReserva.nombreUsuario == usuarioLogeado && elementoReserva.estadoPendiente === true){
+            tiene = true;   
+            break;
+        }
+    }
+    return tiene;
+}
+/////////////////////////////////
+function reservar(){
+    //"cantidadCuposAReservar${elementoLocal.nombreUsuarioLocal}"
+    for (let i = 0; i < locales.length; i++) {
+        let elementoLocal = locales[i];
+        if(elementoLocal.estadoDelLocal === true && elementoLocal.cuposDisponibles > 0){
+            let local = elementoLocal.nombreUsuarioLocal;
+            let selectDelLocal = `#selectReservar${elementoLocal.nombreUsuarioLocal}`;
+            let valueSelect = Number(document.querySelector(selectDelLocal).value);
+
+            if(valueSelect == 2){
+                let idNumeroDeCupos = `#cantidadCuposAReservar${elementoLocal.nombreUsuarioLocal}`;
+                let cantidadCupos = parseInt(document.querySelector(idNumeroDeCupos).value);
+                let cantidadResevasDisponibles = parseInt(elementoLocal.cuposDisponibles);
+                if(cantidadCupos < 0){
+                    document.querySelector("#parrafoRealizarReserva").innerHTML = "no puede ingresar valores negativos, intenta denuevo.";
+                }
+
+                for (let z = 0; z < usuarios.length; z++) {
+                    let elementoUsuarios = usuarios[z];
+                    
+                    if(elementoUsuarios.nombreUsuarioCliente === usuarioLogeado){
+                        
+                        switch(verificarSiTieneUnaPendiente(local)){
+                    
+                            case false:
+                                if(cantidadResevasDisponibles >= cantidadCupos && cantidadCupos >0){
+                                    let reserva = new Reserva(local, usuarioLogeado, numeroReserva, true, cantidadCupos, 0);
+                                    reservas.push(reserva);
+                                    /// aca vamos a sumar la cantidad de cupos al total de cupos reservados del local //
+                                    elementoLocal.totalDeCuposReservadosDelLocal += cantidadCupos;
+                    
+                                    /// aca voy a poner algo para llevar cuenta de los cupos disponibles y los cupos reservados //
+                                    elementoLocal.cuposDisponibles = cantidadResevasDisponibles - cantidadCupos;
+                    
+                                    // aca voy a agregar el numero identificador (contador) de la reserva a la propiedad(lista) reservas del local //
+                                    elementoUsuarios.reservasDelUsuario.push(numeroReserva);
+                                    elementoLocal.codigoReservas.push(numeroReserva);
+                                    // aca vamos a sumar al contador de reservas realizadas por el local //
+                                    elementoLocal.totalDeReservasRealizadasDelLocal += 1;
+                                    elementoLocal.sumaDeReservasPendientes += 1;
+                                    numeroReserva += 1;
+                                    
+                                    document.querySelector("#parrafoRealizarReserva").innerHTML += "Su reserva de "+cantidadCupos + " cupos en "+local+" ha sido realizada con exito. ";
+                                    document.querySelector(`#idCuposDisponilbesDeLaTabla${elementoLocal.nombreUsuarioLocal}`).innerHTML = elementoLocal.cuposDisponibles;
+                                    
+                                }
+                                else{
+                                    document.querySelector("#parrafoRealizarReserva").innerHTML += "Su reserva  en "+local+" no pudo ser realizada, el local no cuenta con esa cantidad de cupos, o usted no marco ninguna reserva. ";
+                                }
+                            break;
+                            
+                            case true:
+                                document.querySelector("#parrafoRealizarReserva").innerHTML += "no puede realizar la reserva de "+cantidadCupos+" cupos en "+local+" porque ya tiene una reserva en estado pendiente en el local. ";
+                            break;
+        
+                        }
+                    }
+                }
+            }
+        }
+    }
+    console.log(locales);
+    console.log(reservas);
+}
+ 
+
+//////////////////////////////////////////////////////////// funcion mostrar reservas pendientes para cancelar ///////////////////////////////////////////////////////////
+
+function mostrarReservasPendientes() {
+    document.querySelector("#tablaCancelarReserva").innerHTML = "";
+    document.querySelector("#parrafoCancelarReserva").innerHTML = "";
+    for (let y = 0; y < locales.length; y++) {
+        let elementoLocal = locales[y];
+        for (let i = 0; i < reservas.length; i++) {
+            let elementoReservaPendiente = reservas[i];
+            
+            if(elementoReservaPendiente.estadoPendiente === true && elementoReservaPendiente.nombreUsuario == usuarioLogeado && elementoLocal.nombreUsuarioLocal == elementoReservaPendiente.local){
+            document.querySelector("#tablaCancelarReserva").innerHTML += `
+                                                                            <tr>
+                                                                            <td>${elementoReservaPendiente.numeroDeReserva}</td>
+                                                                            <td><img src="${elementoLocal.foto}" width="50px" height="50px"></td>
+                                                                            <td>${elementoReservaPendiente.local}</td>
+                                                                            <td>${elementoReservaPendiente.cuposDeReserva}</td>
+                                                                            <td> 
+                                                                                <select id="selectCancelar${elementoReservaPendiente.numeroDeReserva}">
+                                                                                    <option value="1">No</option>
+                                                                                    <option value="2">Si</option>
+                                                                                <select> 
+                                                                            </td> 
+                                                                            </tr>
+                                                                        `;
+            }                                                            
+        }
+    }
+}
+///////////////////////////////////////////////////////////////////// AQUI VA LA FUNCION CANCELAR RESERVAS //////////////////////////////////////////////////////////////////////////////
+
+function cancelar(){
+    for (let i = 0; i < reservas.length; i++){
+        let elementoReserva = reservas[i];        
+        
+        if(elementoReserva.estadoPendiente == true && elementoReserva.nombreUsuario == usuarioLogeado){
+            let select = `#selectCancelar${elementoReserva.numeroDeReserva}`;
+            let selectCancelar = document.querySelector(select).value;
+            
+            if(selectCancelar == 2){
+                elementoReserva.estadoPendiente = "cancelada";
+                elementoReserva.devolverCupos(elementoReserva.local, elementoReserva.cuposDeReserva, elementoReserva.estadoPendiente);
+                
+                for (let z = 0; z < locales.length; z++) {
+                    let elementoLocal = locales[z];
+                    
+                    if(elementoLocal.nombreUsuarioLocal == elementoReserva.local){
+                        elementoLocal.sumaDeReservasPendientes = elementoLocal.sumaDeReservasPendientes -1;
+                        elementoLocal.totalDeReservasRealizadasDelLocal = elementoLocal.totalDeReservasRealizadasDelLocal -1;
+                        elementoLocal.totalDeCuposReservadosDelLocal = elementoLocal.totalDeCuposReservadosDelLocal-elementoReserva.cuposDeReserva;
+                        document.querySelector("#parrafoCancelarReserva").innerHTML += "su reserva en "+elementoReserva.local+" ha sido cancelada con exito. ";
+                    
+                    }
+                }
+            }
+        }
+    }
+    reImprimirTablaDeCancelacion();
+}
+//////////
+function reImprimirTablaDeCancelacion(){
+    mostrarReservasPendientes();
+}
+////////////////////////////////////////////// AQUI VA LA FUNCION MOSTRAR RESERVAS FINALIZADAS PARA CALIFICAR ////////////////////////////////////////////
+
+function mostrarReservasFinalizadas(){
+    document.querySelector("#tablaReservasFinalizadas").innerHTML = "";
+    document.querySelector("#parrafoCalificacionDeReservas").innerHTML = "";
+    for (let y = 0; y < locales.length; y++) {
+        let elementoLocal = locales[y];
+        
+        for(let i = 0; i < reservas.length; i++){
+            let elementoReservaFinalizada = reservas[i];
+            if(elementoReservaFinalizada.estadoPendiente == false && elementoReservaFinalizada.calificacionDeLaReserva == 0 && elementoReservaFinalizada.nombreUsuario == usuarioLogeado && elementoLocal.nombreUsuarioLocal == elementoReservaFinalizada.local){
+                
+                document.querySelector("#tablaReservasFinalizadas").innerHTML += `
+                                                                    <tr> 
+                                                                    <td>${elementoReservaFinalizada.numeroDeReserva}</td>
+                                                                    <td>${elementoReservaFinalizada.local}</td>
+                                                                    <td><img src="${elementoLocal.foto}" width="50px" height="50px"></td>
+                                                                    <td>${elementoReservaFinalizada.cuposDeReserva}</td>
+                                                                    <td> 
+                                                                        <select id="selectCalificar${elementoReservaFinalizada.numeroDeReserva}">
+                                                                            <option value="1">1</option>
+                                                                            <option value="2">2</option>
+                                                                            <option value="3">3</option>
+                                                                            <option value="4">4</option>
+                                                                            <option value="5">5</option>
+                                                                        <select> 
+                                                                    </td> 
+                                                                    </tr>
+                                                                    `;                                     
+        }
+    }
+  }
+}
+///////// 
+function reImprimirTablaDeCalificacion(){
+    mostrarReservasFinalizadas();
+}
+///////////////////////////////////////////// FUNCION CALIFICAR  RESERVAS FINALIZADAS O CANCELADAS /////////////////////////////////////////////////////////////////////////////////////////
+
+function calificarReservaSiendoUsuario(){
+
+    for (let i = 0; i < reservas.length; i++) {
+        let elementocalificarReservaSiendoUsuario = reservas[i];
+        let pendiente = elementocalificarReservaSiendoUsuario.estadoPendiente;
+        
+        if(pendiente == false && elementocalificarReservaSiendoUsuario.calificacionDeLaReserva == 0 && elementocalificarReservaSiendoUsuario.nombreUsuario == usuarioLogeado){
+        
+            let select = `#selectCalificar${elementocalificarReservaSiendoUsuario.numeroDeReserva}`;
+            let selectCancelar = Number(document.querySelector(select).value);
+
+            elementocalificarReservaSiendoUsuario.calificacionDeLaReserva = selectCancelar;
+            document.querySelector("#parrafoCalificacionDeReservas").innerHTML += "Su Reserva a "+elementocalificarReservaSiendoUsuario.local+" ha sido calificada con exito. ";
+            reImprimirTablaDeCalificacion();
+            
+            for (let z = 0; z < locales.length; z++) {
+                let elementoLocal = locales[z];
+                if(elementoLocal.nombreUsuarioLocal == elementocalificarReservaSiendoUsuario.local){
+                    elementoLocal.sumaDeCalificacionesDelLocal += selectCancelar;
+                }
+            }
+        }
+    }
+    console.log(reservas);
+}
+////////////////////////// ACA ARRANCA LA FUNCION DE DATOS ESTADISTICOS DEL USUARIO CLIENTE QUE TAMBIEN VAMOS A USAR PARA LOS LOCALES /////////////////////////////////////
+function mostrarReservasPendientesDelCliente(){
+    document.querySelector("#tablaDeReservasPendientesDelCliente").innerHTML = "";
+    for (let y = 0; y < reservas.length; y++) {
+        let elementoReserva = reservas[y];
+        if(elementoReserva.nombreUsuario == usuarioLogeado && elementoReserva.estadoPendiente == true){
+            for (let z = 0; z < locales.length; z++) {
+                let elementoLocal = locales[z];
+                if(elementoLocal.nombreUsuarioLocal == elementoReserva.local){
+                    document.querySelector("#tablaDeReservasPendientesDelCliente").innerHTML += `
+                                                                        <tr> 
+                                                                        <td>${elementoReserva.numeroDeReserva}</td>
+                                                                        <td>${elementoReserva.local}</td>
+                                                                        <td><img src="${elementoLocal.foto}" width="50px" height="50px"></td>
+                                                                        <td>${elementoReserva.cuposDeReserva}</td>
+                                                                        </tr>
+                                                                        `;  
+                }
+            }
+        }
+    }
+}
+
+function mostrarDatosEstaditsticosDelCliente(){
+    /////////// todo esto del array lo voy a hacer una mini funcion aparte despues ////
+    let arrayLocalesConReservas =[];
+            for (let j = 0; j < reservas.length; j++) {
+                let elementoReserva = reservas[j];
+                
+                if(elementoReserva.nombreUsuario == usuarioLogeado){
+                    if(elementoReserva.estadoPendiente == false || elementoReserva.estadoPendiente == "cancelada"){
+                        let estaEnElArray = false;
+                        
+                        for (let i = 0; i < arrayLocalesConReservas.length; i++) {
+                            let elementoLocalDelArray = arrayLocalesConReservas[i];
+                            if(elementoReserva.local == elementoLocalDelArray.local){
+                                estaEnElArray = true;
+                            }
+                        }
+                        if(estaEnElArray == false){
+                            arrayLocalesConReservas.push(elementoReserva);
+                        }
+                    }
+                }
+            }
+    ////////////// ------------------------------------------------------------ //////
+            document.querySelector("#tablaDePorcentajeDeReservas").innerHTML = "";
+  
+            for (let i = 0; i < arrayLocalesConReservas.length; i++) {
+                let elementLocalDelArray = arrayLocalesConReservas[i];
+
+                for (let y = 0; y < locales.length; y++) {
+                    let elementoLocal = locales[y];
+                    
+                    if(elementoLocal.nombreUsuarioLocal == elementLocalDelArray.local){
+
+                        let cantidadReservasDelCliente = calcularCantidadDeReservasDelClienteEnElLocal(elementLocalDelArray.local);
+                        let cantidadCuposDelCliente = calcularCuposTotalesDeLasReservasDelClienteEnElLocal(elementLocalDelArray.local);
+                        let cantidadReservasDelLocal = calcularCantidadDeReservasDelLocal(elementLocalDelArray.local);
+                        let cantidadCuposDelLocal = calcularCantidadDeCuposTotalesDelLocal(elementLocalDelArray.local);
+   
+                        document.querySelector("#tablaDePorcentajeDeReservas").innerHTML += `
+                                                                        <tr> 
+                                                                        <td>${elementLocalDelArray.local}</td>
+                                                                        <td><img src="${elementoLocal.foto}" width="50px" height="50px"></td>
+                                                                        <td>${cantidadReservasDelCliente}</td>
+                                                                        <td>${cantidadCuposDelCliente}</td>
+                                                                        <td>${cantidadReservasDelLocal}</td>
+                                                                        <td>${cantidadCuposDelLocal}</td>
+                                                                        <td>${calcularPorcentajeDeReservasDelClienteEnElLocal(cantidadReservasDelCliente, cantidadReservasDelLocal)}</td>
+                                                                        <td>${calcularPorcentajeDeCuposReservadosDelCliente(cantidadCuposDelCliente, cantidadCuposDelLocal)}</td>
+                                                                        </tr>
+                                                                        `;          
+            }                    
+        }
+    }
+}
+
+////////////////////////////////////// FUNCION PARA CALCULAR LOS DATOS ESTADISTICOS ///////////////////////
+
+function calcularCantidadDeReservasDelClienteEnElLocal(nombreUsuarioDelLocal){ 
+    let cantidadDeReservas = 0;
+    for (let i = 0; i < reservas.length; i++) {
+        let elementoReserva = reservas[i];
+        if(elementoReserva.nombreUsuario == usuarioLogeado){
+            if(elementoReserva.local == nombreUsuarioDelLocal){
+                cantidadDeReservas += 1;
+            }
+        }
+    }
+    return cantidadDeReservas;
+}
+function calcularCuposTotalesDeLasReservasDelClienteEnElLocal(nombreUsuarioDelLocal){
+    let cuposDelCliente = 0;
+    for (let i = 0; i < reservas.length; i++) {
+        let elementoReserva = reservas[i];
+        if(elementoReserva.nombreUsuario == usuarioLogeado){
+            if(elementoReserva.local == nombreUsuarioDelLocal){
+                cuposDelCliente += elementoReserva.cuposDeReserva;
+            }
+        }
+    }
+    return cuposDelCliente;
+}
+function calcularCantidadDeReservasDelLocal(nombreUsuarioDelLocal){
+    let reservasDelLocal = 0;
+    for (let i = 0; i < reservas.length; i++) {
+        let elementoReserva = reservas[i];
+        if(elementoReserva.local == nombreUsuarioDelLocal){
+            reservasDelLocal += 1;
+        }
+    }
+    return reservasDelLocal;
+}
+function calcularCantidadDeCuposTotalesDelLocal(nombreUsuarioDelLocal){
+    let cuposDelLocal = 0;
+    for (let i = 0; i < reservas.length; i++) {
+        let elementoReserva = reservas[i];
+        if(elementoReserva.local == nombreUsuarioDelLocal){
+            cuposDelLocal += elementoReserva.cuposDeReserva;
+        }
+    }
+    return cuposDelLocal;
+
+}
+function calcularPorcentajeDeReservasDelClienteEnElLocal(cantidaDeReservasDelCliente, cantidaDeReservasDelLocal){
+    let porcentajeReservasClienteLocal = (cantidaDeReservasDelCliente / cantidaDeReservasDelLocal)*100;
+    let porcentajeReservasClienteLocalAcortado = Math.round(porcentajeReservasClienteLocal);
+    return porcentajeReservasClienteLocalAcortado;
+
+}
+function calcularPorcentajeDeCuposReservadosDelCliente(cantidaDeCuposDelCliente, cantidaDecuposDelLocal){
+    let porcentajeCuposClienteLocal = (cantidaDeCuposDelCliente / cantidaDecuposDelLocal)*100;
+    let porcentajeCuposClienteLocalAcortado = Math.round(porcentajeCuposClienteLocal);
+    return porcentajeCuposClienteLocalAcortado;
+}
+//////////////////////////////////////// funcion local favorito del cliente ..////////////////////////////////////////////////////
+
+function localFavoritoDelCliente(){
+    let reservaMasGrande = 0;
+    let numeroReservaFavorita = 0;
+
+    for (let i = 0; i < reservas.length; i++) {
+        let elementoReserva = reservas[i];
+        if(elementoReserva.nombreUsuario == usuarioLogeado){
+
+            if(i === 0){
+                reservaMasGrande = elementoReserva.cuposDeReserva;
+                numeroReservaFavorita = elementoReserva.numeroDeReserva;
+            }
+            else{
+                if(elementoReserva.cuposDeReserva > reservaMasGrande){
+                    reservaMasGrande = elementoReserva.cuposDeReserva;
+                    numeroReservaFavorita = elementoReserva.numeroDeReserva;
+                }
+            }
+        }
+    }
+    return(numeroReservaFavorita);
+}
+
+function mostrarTablaLocalesFavoritos(){
+    document.querySelector("#tablaDeLocalFavorito").innerHTML = "";
+    let numeroReservaFavorita = localFavoritoDelCliente();
+    
+    for (let i = 0; i < usuarios.length; i++) {
+        let elementoUsuario = usuarios[i];
+        
+        if(elementoUsuario.nombreUsuarioCliente == usuarioLogeado){
+            
+            let arrayReservasDelUsuarioLogeado = elementoUsuario.reservasDelUsuario;
+
+            for (let z = 0; z < arrayReservasDelUsuarioLogeado.length; z++) {
+                let elementoNumeroReserva = arrayReservasDelUsuarioLogeado[z];
+                
+                console.warn(arrayReservasDelUsuarioLogeado);
+                
+                if(elementoNumeroReserva == numeroReservaFavorita){
+                    
+                    for (let y = 0; y < reservas.length; y++) {
+                        let elementoReserva = reservas[y];
+
+                        if(elementoReserva.numeroDeReserva == numeroReservaFavorita){
+                    
+                            for (let y = 0; y < locales.length; y++) {
+                                let elementoLocal = locales[y];
+                                
+                                if(elementoReserva.local == elementoLocal.nombreUsuarioLocal){
+
+                                    let localDeReserva = elementoReserva.local;
+                                    let canticadReservasDelCliente = calcularCantidadDeReservasDelClienteEnElLocal(localDeReserva);
+                                    let canticadDeCuposReservadosDelCliente =  calcularCuposTotalesDeLasReservasDelClienteEnElLocal(localDeReserva);
+                                    let canticadReservasDelLocal = calcularCantidadDeReservasDelLocal(localDeReserva);
+                                    
+                                    document.querySelector("#tablaDeLocalFavorito").innerHTML = `
+                                                                                                <tr>
+                                                                                                <td>${elementoReserva.local}</td>
+                                                                                                <td><img src="${elementoLocal.foto}" width="50px" height="50px"></td>
+                                                                                                <td>${calcularPorcentajeDeReservasDelClienteEnElLocal(canticadReservasDelCliente, canticadReservasDelLocal)}</td>
+                                                                                                <td>${canticadReservasDelLocal}</td> 
+                                                                                                <td>${canticadDeCuposReservadosDelCliente}</td>
+                                                                                                </tr>
+                                                                                                `;
+                                }
+                            }                                                               
+                        }  
+                    }
+                }
+            }
+        }
+    }                    
+}  
+
+ //////////////////////////////////////////////////////////////          FUNCIONES DE LOS LOCALES        ///////////////////////////////////////////////////////////////
+
+function mostrarListadoDeReservasParaLosLocales() {
+    document.querySelector("#tablaListadoDeReservasDeLocales").innerHTML = "";
+    crearTablasDeRecervas("#tablaListadoDeReservasDeLocales", "tabla");
+    document.querySelector("#tablaBuscadorDeReservasDeLocales").innerHTML = "";
+    document.querySelector("#parrafoBuscadorReservasXNombre").innerHTML = "";
+}
+
+function crearTablasDeRecervas(tabla, buscador){
+    
+    document.querySelector(tabla).innerHTML ="";
+    
+    for (let i = 0; i < reservas.length; i++) {
+        let elementoReservaRealizadaPorElUsuario = reservas[i];
+        
+            if(elementoReservaRealizadaPorElUsuario.local === usuarioLogeado){
+                let estado ="";
+                                                        
+                switch(buscador){
+                    case "buscador":
+                        if(elementoReservaRealizadaPorElUsuario.estadoPendiente === true){
+                            estado = "pendiente";
+
+                            let nombreIngresado = String(document.querySelector("#buscadorNombreCliente").value);
+                            let arrayNumeroDeReservaDelBuscador = stringDelBuscador(nombreIngresado);
+                            
+                            for (let z = 0; z < arrayNumeroDeReservaDelBuscador.length; z++) {
+
+                                if(elementoReservaRealizadaPorElUsuario.numeroDeReserva == arrayNumeroDeReservaDelBuscador[z]){
+                                    document.querySelector(tabla).innerHTML += `<tr>
+                                                                                <td>${elementoReservaRealizadaPorElUsuario.numeroDeReserva}</td>
+                                                                                <td>${elementoReservaRealizadaPorElUsuario.nombreUsuario}</td>
+                                                                                <td>${elementoReservaRealizadaPorElUsuario.cuposDeReserva}</td>
+                                                                                <td>${estado}</td>
+                                                                                <td> 
+                                                                                    <select id="selectEstadoDeReservaDeBuscador${elementoReservaRealizadaPorElUsuario.numeroDeReserva}">
+                                                                                        <option value="1">Pendiente</option>
+                                                                                        <option value="2">Finalizada</option>
+                                                                                    <select> 
+                                                                                </tr>`;
+                                                                                console.warn("switch buscador pendiente");
+                                }
+                            }
+                        }
+                    break;
+                    case "tabla":
+                        switch(elementoReservaRealizadaPorElUsuario.estadoPendiente){
+                            case "cancelada":
+                                estado = "cancelada";
+                                document.querySelector(tabla).innerHTML += `<tr>
+                                                                                <td>${elementoReservaRealizadaPorElUsuario.numeroDeReserva}</td>
+                                                                                <td>${elementoReservaRealizadaPorElUsuario.nombreUsuario}</td>
+                                                                                <td>${elementoReservaRealizadaPorElUsuario.cuposDeReserva}</td>
+                                                                                <td>${estado}</td>
+                                                                                <td>no puede cambiar el estado de esta reserva</td> 
+                                                                            </tr>`;
+                                                                            console.warn("switch tabla");
+                                break;
+                            
+                            case false:
+                                estado = "finalizada";
+                                document.querySelector(tabla).innerHTML += `<tr>
+                                                                                <td>${elementoReservaRealizadaPorElUsuario.numeroDeReserva}</td>
+                                                                                <td>${elementoReservaRealizadaPorElUsuario.nombreUsuario}</td>
+                                                                                <td>${elementoReservaRealizadaPorElUsuario.cuposDeReserva}</td>
+                                                                                <td>${estado}</td>
+                                                                                <td>no puede cambiar el estado de esta reserva</td> 
+                                                                            </tr>`;
+                                                                            console.warn("switch tabla");
+                                
+                                break;
+                            
+                            case true:
+                                estado = "pendiente";
+                                document.querySelector(tabla).innerHTML +=      `<tr>
+                                                                                <td>${elementoReservaRealizadaPorElUsuario.numeroDeReserva}</td>
+                                                                                <td>${elementoReservaRealizadaPorElUsuario.nombreUsuario}</td>
+                                                                                <td>${elementoReservaRealizadaPorElUsuario.cuposDeReserva}</td>
+                                                                                <td>${estado}</td>
+                                                                                <td> 
+                                                                                    <select id="selectEstadoDeReserva${elementoReservaRealizadaPorElUsuario.numeroDeReserva}">
+                                                                                        <option value="1">Pendiente</option>
+                                                                                        <option value="2">Finalizada</option>
+                                                                                    <select> 
+                                                                                </tr>`;
+                                                                                console.warn("switch tabla");
+                                break;
+                        
+                        }
+                    break;
+                }
+        }
+    }
+}
+////////////////////////////////////////////////////////////////// FUNCION ACTUALIZAR ESTADO DE RESERVAS /////////////////////////////////////////////////////////////
+function reImprimirTablaDeEstadosDelLocal(){
+    mostrarListadoDeReservasParaLosLocales();
+}
+
+/////////
+
+function actualizarEstadosDeReservas(){
+    let confirmador = false;
+    for (let i = 0; i < reservas.length; i++) {
+        let elementoReservaRealizadaPorElUsuario = reservas[i];
+        
+        if(elementoReservaRealizadaPorElUsuario.local === usuarioLogeado && elementoReservaRealizadaPorElUsuario.estadoPendiente === true){
+
+            let idSelectBuscador = `#selectEstadoDeReservaDeBuscador${elementoReservaRealizadaPorElUsuario.numeroDeReserva}`;
+            let idSelectLista = `#selectEstadoDeReserva${elementoReservaRealizadaPorElUsuario.numeroDeReserva}`;
+            let selectListaValue = "";
+            
+            switch(!document.querySelector(idSelectBuscador)){
+                case true:
+                    selectListaValue = Number(document.querySelector(idSelectLista).value);
+
+                    if(selectListaValue == 2){
+                        elementoReservaRealizadaPorElUsuario.estadoPendiente = false;
+                        elementoReservaRealizadaPorElUsuario.devolverCupos(elementoReservaRealizadaPorElUsuario.local, elementoReservaRealizadaPorElUsuario.cuposDeReserva, '');
+                        confirmador = true;
+                        for (let z = 0; z < locales.length; z++) {
+                            let elementoLocal = locales[z];
+                            
+                            if(elementoLocal.nombreUsuarioLocal == elementoReservaRealizadaPorElUsuario.local){
+                                elementoLocal.sumaDeReservasPendientes = elementoLocal.sumaDeReservasPendientes - 1;
+                            }  
+                        }
+                    }
+                break;
+                case false:
+                    let selectBuscarValue = Number(document.querySelector(idSelectBuscador).value);
+                    selectListaValue = Number(document.querySelector(idSelectLista).value);
+                    if(selectBuscarValue == 2 || selectListaValue == 2){
+                        elementoReservaRealizadaPorElUsuario.estadoPendiente = false;
+                        elementoReservaRealizadaPorElUsuario.devolverCupos(elementoReservaRealizadaPorElUsuario.local, elementoReservaRealizadaPorElUsuario.cuposDeReserva, '');
+                        confirmador = true;
+                        for (let z = 0; z < locales.length; z++) {
+                            let elementoLocal = locales[z];
+                            
+                            if(elementoLocal.nombreUsuarioLocal == elementoReservaRealizadaPorElUsuario.local){
+                                elementoLocal.sumaDeReservasPendientes = elementoLocal.sumaDeReservasPendientes - 1;
+                            }  
+                        }
+                    }
+                break;
+            }
+        }
+    }
+    reImprimirTablaDeEstadosDelLocal();
+    if(confirmador == true){
+        document.querySelector("#parrafoBuscadorReservasXNombre").innerHTML = "Se ha Actualizado el Estado de las Reservas Correctamente";    
+    }
+}
+//////////////////////////////////////////////////////////////////// FUNCION BUSCADOR DE RESERVAS X NOMBRE //////////////////////////////////////////////////////////
+
+function buscarReservaPorNombre(){
+    document.querySelector("#parrafoBuscadorReservasXNombre").innerHTML = "";
+    let nombreIngresado = String(document.querySelector("#buscadorNombreCliente").value);
+    if(nombreIngresado.length > 0){
+        crearTablasDeRecervas("#tablaBuscadorDeReservasDeLocales", "buscador");
+        
+    }
+    else {
+        document.querySelector("#parrafoBuscadorReservasXNombre").innerHTML = "debe ingresar al menos un caracter para realizar la busqueda, por favor intente de nuevo.";
+    }
+    
+}
+function stringDelBuscador(nombre){
+    let confirmador = false;
+    let arrayNumerosReserva = [];
+    let numeroActual = 0;
+    let caracteresBuscados = nombre.length;
+    let nombreTodoMayusculas = nombre.toLocaleUpperCase();
+    let nombreTodoMinusculas = nombre.toLocaleLowerCase(); 
+    
+    for (let i = 0; i < reservas.length; i++) {
+        let elementoReserva = reservas[i];
+        
+        if(elementoReserva.local === usuarioLogeado){
+            if(elementoReserva.estadoPendiente === true){
+                let nombreUsuario = elementoReserva.nombreUsuario;
+            
+                for (let z = 0; z < nombreUsuario.length; z++) {
+                
+                    if((hacerMinuscula(nombreUsuario.substr(z, caracteresBuscados)) == nombreTodoMinusculas || hacerMayuscula(nombreUsuario.substr(z, caracteresBuscados)) == nombreTodoMayusculas || nombreUsuario.substr(z, caracteresBuscados) == nombre) && elementoReserva.numeroDeReserva != numeroActual){
+                        numeroActual = elementoReserva.numeroDeReserva;
+                        arrayNumerosReserva.push(elementoReserva.numeroDeReserva);
+                        confirmador = true;
+                    }
+                }
+                if(confirmador == false){
+                    document.querySelector("#parrafoBuscadorReservasXNombre").innerHTML = " no se encuentran el/los caracter/es ingresado/s en los nombres de usuario de las Reservas Pendientes";
+                }
+            }
+            else {
+                document.querySelector("#parrafoBuscadorReservasXNombre").innerHTML = " no cuenta con reservas pendientes en el local";
+            }
+        }
+    }
+    return arrayNumerosReserva;
+}
+function hacerMinuscula(texto){
+    let minusculas = texto.toLocaleUpperCase();
+    return minusculas;
+}
+function hacerMayuscula(texto){
+    let mayusculas = texto.toLocaleUpperCase();
+    return mayusculas;
+}
+
+//////////////////////////////////////////////////////////// FUNCION CAMBIAR ESTADO DEL LOCAL ////////////////////////////////////////////////////////////////
+
+function estadoDelLocal(){
+    for (let i = 0; i < locales.length; i++) {
+        let elementoLocalDeLasReservas = locales[i]; 
+        if(elementoLocalDeLasReservas.nombreUsuarioLocal == usuarioLogeado && verificarSiElLocalTieneReservasPendientes() == false){
+            let select = Number(document.querySelector("#selectEstablecerActividadDelLocal").value);
+            if (select == 1){
+                if(elementoLocalDeLasReservas.estadoDelLocal == false){
+                    elementoLocalDeLasReservas.estadoDelLocal = true;
+                    document.querySelector("#parrafoEstablecerActividadDelLocal").innerHTML = "su local se encuentra activo." ;
+                }
+                else{
+                    document.querySelector("#parrafoEstablecerActividadDelLocal").innerHTML = "su local ya se encuentra activo." ;
+                }
+            }
+            if (select == 2){
+                if(elementoLocalDeLasReservas.estadoDelLocal == true){
+                    elementoLocalDeLasReservas.estadoDelLocal = false;   
+                    document.querySelector("#parrafoEstablecerActividadDelLocal").innerHTML = "su local se encuentra inactivo." ;
+                }
+                else {
+                    document.querySelector("#parrafoEstablecerActividadDelLocal").innerHTML = "su local ya se encuentra inactivo." ;
+                }
+            }
+            break;
+        }
+    }
+    console.log(locales);
+}
+function verificarSiElLocalTieneReservasPendientes(){
+    let tiene = false;
+    for (let i = 0; i < reservas.length; i++) {
+        let elementoReserva = reservas[i];
+        if(elementoReserva.local == usuarioLogeado){
+            if(elementoReserva.estadoPendiente == true){
+                tiene = true;
+                document.querySelector("#parrafoEstablecerActividadDelLocal").innerHTML = "su local tiene reservas pendientes, no puede inactivar el local hasta tener todas las reservas finalizadas o canceladas." ;
+                break;
+            }
+        }
+    }
+    return tiene;
+}
+
+///////////////////////////////////////////////////////////////// FUNCTION CAMBIAR MAXIMO DE RESERVA DEL LOCAL ////////////////////////////////////////////////////////////////////
+function mostrarMaximoDeCuposDelLocal(){
+    let idMensaje = document.querySelector("#parrafoMensajeDeMaximosLocal");
+    idMensaje.innerHTML = "";
+    for (let i = 0; i < locales.length; i++) {
+        let elementoLocales = locales[i];
+        if(elementoLocales.nombreUsuarioLocal === usuarioLogeado){
+            document.querySelector("#parrafoMaximoActual").innerHTML = elementoLocales.maximoDeReservas;
+        }  
+    }
+}
+function reImprimirMaximoDeCupos(){
+    mostrarMaximoDeCuposDelLocal();
+}
+
+function cambiarMaximoDeCuposDelLocal(){
+    let idMensaje = document.querySelector("#parrafoMensajeDeMaximosLocal");
+    let confirmador = false;
+    
+    for (let i = 0; i < locales.length; i++) {
+        let elementoLocales = locales[i];
+        
+        if(elementoLocales.nombreUsuarioLocal === usuarioLogeado){
+            
+            for (let z = 0; z < reservas.length; z++) {
+                let elementoReserva = reservas[z];
+                
+                if(elementoLocales.nombreUsuarioLocal == elementoReserva.local){
+                    if(elementoReserva.estadoPendiente == true){
+                        confirmador = true;
+                        idMensaje.innerHTML ="no puede cambiar el cupo maximo de reservas si tiene una reserva pendiente!";                    
+                    }
+                }
+            }
+    
+            document.querySelector("#parrafoMaximoActual").innerHTML = elementoLocales.maximoDeReservas;
+            let nuevoMaximo = Number(document.querySelector("#parrafoNuevoMaximo").value);
+            let anteriorMaximo = elementoLocales.maximoDeReservas;
+
+            if(nuevoMaximo > 0 && nuevoMaximo != anteriorMaximo && confirmador == false){
+                elementoLocales.cuposDisponibles = elementoLocales.cuposDisponibles + (nuevoMaximo - anteriorMaximo);
+                elementoLocales.maximoDeReservas = nuevoMaximo;
+                reImprimirMaximoDeCupos();
+                idMensaje.innerHTML = "Perfecto! Se ha actualizado el Maximo de Reservas Del Local. Ahora el maximo es: " + nuevoMaximo;
+            }
+            else if(nuevoMaximo == 0 && confirmador == false){
+                idMensaje.innerHTML = "el nuevo cupo maximo no puede ser igual a cero, intenta denuveo.";
+            }
+            else if(nuevoMaximo === elementoLocales.maximoDeReservas && confirmador == false){
+                idMensaje.innerHTML = "el nuevo cupo maximo no puede ser igual al numero maximo actual, intenta denuveo.";
+            }
+        } 
+    }
+}
+
+///////////////////////////////////////////////////////////////////// DATOS ESTATISTICOS DEL LOCAL //////////////////////////////////////////////////////////////////////
+function porcentajeDeOcupacionDelLocal(){
+    let porcentaje = 0;
+    let idParrafo = document.querySelector("#parrafoPorcentajeDeOcupacion");
+    idParrafo.innerHTML = "";
+    for (let i = 0; i < locales.length; i++) {
+        let elementoLocal = locales[i];
+        if(elementoLocal.nombreUsuarioLocal == usuarioLogeado){
+            porcentaje = ((elementoLocal.maximoDeReservas - elementoLocal.cuposDisponibles) /elementoLocal.maximoDeReservas)*100;
+            let porcentajeAcortado = Math.round(porcentaje);
+            idParrafo.innerHTML = porcentajeAcortado + "% del local se encuentra ocupado con reservas pendientes.";
+        }
+    }
+}
+    //----------------------------//--------------------------------------------------------------------//----------------------------------//
+function crearTablaPromedioDeCalificacion(idTabla, miLocal){
+document.querySelector(idTabla).innerHTML = "";
+    for (let z = 0; z < locales.length; z++) {
+        let elementoLocal = locales[z];
+            if(miLocal == true && elementoLocal.nombreUsuarioLocal == usuarioLogeado && elementoLocal.sumaDeCalificacionesDelLocal > 0){
+                let promedio = 100*(elementoLocal.sumaDeCalificacionesDelLocal /(5*(elementoLocal.totalDeReservasRealizadasDelLocal - elementoLocal.sumaDeReservasPendientes)));
+                document.querySelector(idTabla).innerHTML = `
+                                                            <tr>
+                                                                <td><img src="${elementoLocal.foto}" width="50px" height="50px"></td>
+                                                                <td>${elementoLocal.totalDeReservasRealizadasDelLocal - elementoLocal.sumaDeReservasPendientes}</td>
+                                                                <td>${promedio}%</td>
+                                                            </tr>`; 
+                break;
+            }
+            if(miLocal == false && elementoLocal.nombreUsuarioLocal != usuarioLogeado && elementoLocal.sumaDeCalificacionesDelLocal > 0){
+                let promedio = 100*(elementoLocal.sumaDeCalificacionesDelLocal /(5*(elementoLocal.totalDeReservasRealizadasDelLocal - elementoLocal.sumaDeReservasPendientes)));
+                document.querySelector(idTabla).innerHTML += `
+                                                            <tr>
+                                                                <td><img src="${elementoLocal.foto}" width="50px" height="50px"></td>
+                                                                <td>${elementoLocal.nombre}</td>
+                                                                <td>${elementoLocal.totalDeReservasRealizadasDelLocal - elementoLocal.sumaDeReservasPendientes}</td>
+                                                                <td>${promedio}%</td>
+                                                            </tr>`; 
+            }
+    }
+}
+function hacerPromedioDeCalificacionDelLosLocales(){
+    crearTablaPromedioDeCalificacion("#tablaPorcentajeDeCalificacionDeLocalLogeado", true);
+    crearTablaPromedioDeCalificacion("#tablaPorcentajeDeCalificacionDeLosDemasLocales", false);
+}
+    //----------------------------//--------------------------------------------------------------------//----------------------------------//
+function crearTablaTotalDeReservas(tablaPendientes, tablaFinalizadas){
+    document.querySelector(String(tablaFinalizadas)).innerHTML = "";
+    document.querySelector(String(tablaPendientes)).innerHTML = "";
+    for (let i = 0; i < locales.length; i++) {
+        let elementoLocal = locales[i];
+        for (let z = 0; z < reservas.length; z++) {
+            let elementoReserva = reservas[z];
+            if(elementoLocal.nombreUsuarioLocal == elementoReserva.local && elementoLocal.nombreUsuarioLocal == usuarioLogeado){  
+                switch(elementoReserva.estadoPendiente){
+                    case true:
+                        document.querySelector(String(tablaPendientes)).innerHTML += `
+                                                                        <tr>
+                                                                            <td>${elementoReserva.nombreUsuario}</td>
+                                                                            <td>${elementoReserva.numeroDeReserva}</td>
+                                                                            <td>${elementoReserva.cuposDeReserva}</td>
+                                                                        </tr>`; 
+                    break;
+                    case false:
+                        document.querySelector(String(tablaFinalizadas)).innerHTML += `
+                                                                        <tr>
+                                                                        <td>${elementoReserva.nombreUsuario}</td>
+                                                                        <td>${elementoReserva.numeroDeReserva}</td>
+                                                                        <td>${elementoReserva.cuposDeReserva}</td>
+                                                                        <td>${elementoReserva.calificacionDeLaReserva}</td>
+                                                                        </tr>`; 
+                    break;
+                }
+            }
+        }
+    }    
+}
+function hacerTotalesDeReservasDelLocal(){
+    crearTablaTotalDeReservas("#tablaDeReservasPendientessDelLocal", "#tablaDeReservasFinalizadasDelLocal");
+}
+   //----------------------------//--------------------------------------------------------------------//----------------------------------//
+function mostrarTotalDeReservasDelLocal(){
+    for (let i = 0; i < locales.length; i++) {
+        let elementoLocal = locales[i];
+        if(elementoLocal.nombreUsuarioLocal == usuarioLogeado){
+            document.querySelector("#parrafoDeReservasTotalesDelLocal").innerHTML =`<b>${elementoLocal.totalDeReservasRealizadasDelLocal}</b> Reservas fueron tomadas hasta ahora(no cuentan las canceladas)`;
+        }
+    }
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////       
+function desactivarBotones(){
+    if(usuarioLogeado !=""){
+    document.querySelector('#btnOpcionInicio').disabled=true;
+    document.querySelector('#btnOpcionRegistro').disabled=true;
+}
+    else if (usuarioLogeado == ""){
+        document.querySelector('#btnOpcionRegistro').disabled=false;
+        document.querySelector('#btnOpcionInicio').disabled=false;
+    }
+}
+//////////////////////////
